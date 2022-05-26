@@ -10,7 +10,7 @@ import java.net.URI
 class CourseController(private val courseService: CourseService) {
     @GetMapping("/{code}")
     fun fetchByCode(@PathVariable(name="code", required = true) code: String): ResponseEntity<Course?> {
-       val course = this.courseService.getCourseByCode(code)
+       val course = this.courseService.getCourseByCode(code) ?: return ResponseEntity.notFound().build()
         return ResponseEntity.ok(course)
     }
 
